@@ -17,6 +17,8 @@ export async function POST(request: Request) {
     );
   }
   const userId = user._id;
+
+  // incoming request
   const { acceptMessages } = await request.json();
 
   try {
@@ -86,6 +88,7 @@ export async function GET(request: Request) {
     return Response.json(
       {
         success: true,
+        // check s or not
         isAcceptingMessages: foundUser.isAcceptingMessage,
       },
       { status: 200 }

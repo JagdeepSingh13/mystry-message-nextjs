@@ -20,7 +20,7 @@ import { Button } from "@/components/ui/button";
 import { signInSchema } from "@/schemas/signInSchema";
 import { signIn } from "next-auth/react";
 
-const page = () => {
+const Page = () => {
   const router = useRouter();
 
   // zod implementation
@@ -102,4 +102,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

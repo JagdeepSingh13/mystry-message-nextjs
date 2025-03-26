@@ -1,6 +1,6 @@
 import mongoose, { Schema, Document } from "mongoose";
 
-// we difined an interface -> Message
+// we defined an interface -> Message
 export interface Message extends Document {
   content: string;
   createdAt: Date;

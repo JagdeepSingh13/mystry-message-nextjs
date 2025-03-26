@@ -68,13 +68,11 @@ export default function SendMessage() {
         ...data,
       });
 
-      toast(`
-         ${response.data.message}`);
+      toast(`${response.data.message}`);
       form.reset({ ...form.getValues(), content: "" });
     } catch (error) {
       const axiosError = error as AxiosError<ApiResponse>;
-      toast(`
-        ${axiosError.response?.data.message ?? "Failed to sent message"}`);
+      toast(`${axiosError.response?.data.message ?? "Failed to sent message"}`);
     } finally {
       setIsLoading(false);
     }

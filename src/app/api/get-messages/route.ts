@@ -18,6 +18,7 @@ export async function GET(request: Request) {
   }
   const userId = new mongoose.Types.ObjectId(_user._id);
   try {
+    // aggregate pipelines to get the messages of the user
     const user = await UserModel.aggregate([
       { $match: { _id: userId } },
       { $unwind: "$messages" },
@@ -32,12 +33,7 @@ export async function GET(request: Request) {
       );
     }
 
-    return Response.json(
-      { messages: user[0].messages },
-      {
-        status: 200,
-      }
-    );
+    return Response.json({ messages: user[0].messages }, { status: 200 });
   } catch (error) {
     console.error("An unexpected error occurred:", error);
     return Response.json(

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import React, { useState } from "react";
@@ -33,6 +34,8 @@ export function MessageCard({ message, onMessageDelete }: MessageCardProps) {
         `/api/delete-message/${message._id}`
       );
       toast(`${response.data.message}`);
+
+      // runs the function on onMessageDelete with message._id
       onMessageDelete(message._id as string);
     } catch (error) {
       const axiosError = error as AxiosError<ApiResponse>;

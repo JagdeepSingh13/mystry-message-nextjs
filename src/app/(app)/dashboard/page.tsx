@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import { MessageCard } from "@/components/MessageCard";
@@ -20,19 +21,23 @@ function UserDashboard() {
   const [isLoading, setIsLoading] = useState(false);
   const [isSwitchLoading, setIsSwitchLoading] = useState(false);
 
+  // deletes the message from frontend
   const handleDeleteMessage = (messageId: string) => {
     setMessages(messages.filter((message) => message._id !== messageId));
   };
 
   const { data: session } = useSession();
 
+  // React Hook Form
   const form = useForm({
     resolver: zodResolver(acceptMessageSchema),
   });
 
   const { register, watch, setValue } = form;
+
   const acceptMessages = watch("acceptMessages");
 
+  // accept-messages switch
   const fetchAcceptMessages = useCallback(async () => {
     setIsSwitchLoading(true);
     try {
@@ -45,6 +50,7 @@ function UserDashboard() {
     }
   }, [setValue]);
 
+  // fetch all the messages
   const fetchMessages = useCallback(
     async (refresh: boolean = false) => {
       setIsLoading(true);
@@ -69,7 +75,6 @@ function UserDashboard() {
     if (!session || !session.user) return;
 
     fetchMessages();
-
     fetchAcceptMessages();
   }, [session, setValue, fetchAcceptMessages, fetchMessages]);
 
